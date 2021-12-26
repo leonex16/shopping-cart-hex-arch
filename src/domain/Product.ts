@@ -1,14 +1,15 @@
-import { v4 } from "uuid";
+import { generateUid } from "../infrastructure/uuid/uuid";
 
 export type productId = string;
 
-export interface Product {
+export interface IProduct {
+  id: productId;
   title: string;
   price: number;
 }
 
 export class Product {
-  private _id: productId = v4();
+  private _id: productId = generateUid();
   public title: string;
   public price: number;
 

@@ -1,18 +1,18 @@
-import { v4 } from "uuid";
-import { Product, productId } from "./Product";
+import { generateUid } from "../infrastructure/uuid/uuid";
+import { IProduct, productId } from "./Product";
 
 export type basketId = string;
 
 export interface Basket {
-  items: Product[];
+  items: IProduct[];
 }
 
 export class Basket {
   private _id: basketId;
-  public items: Product[];;
+  public items: IProduct[];
 
   constructor() {
-    this._id = v4();
+    this._id = generateUid();
     this.items = [];
   }
 
@@ -20,24 +20,23 @@ export class Basket {
     return this._id;
   }
 
-  findProduct( product: Product): Product | null {
-    const findProduct = ( item: Product ) => item.id === product.id;
+  findProduct(product: IProduct): IProduct | null {
+    const findProduct = (item: IProduct) => item.id === product.id;
 
     return this.items.find(findProduct) ?? null;
   }
 
-  increaseBasket( product: Product ): this {
+  increaseBasket(product: IProduct): this {
     return {
       ...this,
-      items: [ ...this.items, product ]
+      items: [...this.items, product],
     };
   }
 
-  decreaseBasket( productId: productId ): this {
+  decreaseBasket(productId: productId): this {
     return {
       ...this,
-      items: this.items.filter( item => item.id !== productId )
+      items: this.items.filter((item) => item.id !== productId),
     };
   }
 }
- 
