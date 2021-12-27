@@ -1,5 +1,9 @@
 {
   "name": "shopping-cart-hex-arch",
+  "author": {
+    "name": "Leonel Espinoza Sotelo",
+    "email": "leonelantonio569@gmail.com"
+  },
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
